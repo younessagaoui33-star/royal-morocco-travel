@@ -36,14 +36,29 @@
   </div>
   <div class="cform">
     <h2>Send us a message</h2>
-    <p class="body">Fill in the form and we prepare your message in WhatsApp, ready to send.</p>
-    <form id="cform">
-      <div><label for="c-name">Name</label><input id="c-name" required autocomplete="name"></div>
-      <div><label for="c-email">Email (optional)</label><input id="c-email" type="email" autocomplete="email"></div>
-      <div class="full"><label for="c-topic">Topic</label><select id="c-topic"><option>I want to book a tour</option><option>I have a question about a tour</option><option>I am a travel agency or group organiser</option><option>Something else</option></select></div>
-      <div class="full"><label for="c-msg">Message</label><textarea id="c-msg" required placeholder="Your dates, the number of travellers and what you would like to do"></textarea></div>
-      <div class="full"><button class="btn dark" type="submit">Prepare my message</button><p class="note" id="cNote"></p></div>
+    <p class="body">Fill in the form and your message comes straight to our inbox. We reply within 24 hours, usually much sooner.</p>
+    <form id="mailform" action="https://formsubmit.co/royalmoroccotravel3@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New message from royalmoroccotravel.com">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <div><label for="m-name">Name</label><input id="m-name" name="Name" required autocomplete="name"></div>
+      <div><label for="m-email">Email</label><input id="m-email" name="email" type="email" required autocomplete="email"></div>
+      <div><label for="m-phone">WhatsApp (optional)</label><input id="m-phone" name="WhatsApp" type="tel" autocomplete="tel"></div>
+      <div><label for="m-topic">Topic</label><select id="m-topic" name="Topic"><option>I want to book a tour</option><option>I have a question about a tour</option><option>I am a travel agency or group organiser</option><option>Something else</option></select></div>
+      <div class="full"><label for="m-msg">Message</label><textarea id="m-msg" name="Message" required placeholder="Your dates, the number of travellers and what you would like to do"></textarea></div>
+      <div class="full"><button class="btn dark" type="submit" id="m-btn">Send my message</button><p class="note" id="m-note"></p></div>
     </form>
+    <script>
+    (function(){var f=document.getElementById('mailform');if(!f)return;var b=document.getElementById('m-btn'),n=document.getElementById('m-note');
+    f.addEventListener('submit',function(e){e.preventDefault();b.disabled=true;b.textContent='Sending...';n.textContent='';
+    fetch('https://formsubmit.co/ajax/royalmoroccotravel3@gmail.com',{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)})
+    .then(function(r){return r.json()}).then(function(d){if(d.success==='false'||d.success===false)throw 0;
+    f.reset();b.textContent='Message sent';n.innerHTML='Thank you! We received your message and will reply within 24 hours, usually much sooner.';
+    try{gtag('event','generate_lead',{method:'contact_form'})}catch(x){}})
+    .catch(function(){b.disabled=false;b.textContent='Send my message';n.innerHTML='Sorry, the message could not be sent. Please <a href="https://wa.me/212714987226" target="_blank" rel="noopener">write to us on WhatsApp</a>.'});});})();
+    </script>
+
   </div>
 </div>
 

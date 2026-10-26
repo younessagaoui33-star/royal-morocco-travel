@@ -30,15 +30,30 @@
 <div class="blk"><div class="k"><h2>How it works</h2></div><div class="v"><div class="steps"><div><b>1</b><h3>You tell us</h3><p>Where you start, how many days, who is travelling and what you enjoy.</p></div><div><b>2</b><h3>We plan</h3><p>We send a route and a price. Ask for changes until it feels right.</p></div><div><b>3</b><h3>You confirm</h3><p>A deposit confirms the trip. The balance is paid on arrival in Morocco.</p></div></div></div></div>
 <div class="blk"><div class="k"><h2>What you can change</h2></div><div class="v"><ul class="plain"><li>Starting city: Marrakech, Fes, Casablanca or Tangier</li><li>Length of the trip and the pace of the drives</li><li>Hotels and riads, and a night in a desert camp</li><li>Group size: one traveller, a family or a large group</li><li>Activities: balloon, quad, buggy, 4x4, camel and horse riding</li></ul></div></div>
 <div class="blk" id="request"><div class="k"><h2>Send your request</h2></div><div class="v">
-<form id="form">
-  <div><label for="f-name">Name</label><input id="f-name" required autocomplete="name"></div>
-  <div><label for="f-pax">Travellers</label><select id="f-pax"><option>1</option><option selected>2</option><option>3 to 4</option><option>5 to 7</option><option>8 or more</option></select></div>
-  <div><label for="f-from">Starting from</label><select id="f-from"><option>Marrakech</option><option>Fes</option><option>Casablanca</option><option>Tangier</option></select></div>
-  <div><label for="f-days">Days</label><select id="f-days"><option>3</option><option>4</option><option>5</option><option>6 to 7</option><option>8 to 10</option><option>11 or more</option></select></div>
-  <div class="full"><label for="f-date">Approximate dates</label><input id="f-date" placeholder="For example, mid-March 2027"></div>
-  <div class="full"><label for="f-msg">Tour or ideas</label><textarea id="f-msg" placeholder="A tour from this site, or what you would like to see"></textarea></div>
-  <div class="full"><button class="btn dark" type="submit">Prepare my message</button><p class="note" id="formNote"></p></div>
+<form id="tripform" action="https://formsubmit.co/royalmoroccotravel3@gmail.com" method="POST">
+  <input type="hidden" name="_subject" value="New trip request from royalmoroccotravel.com">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+  <div><label for="f-name">Name</label><input id="f-name" name="Name" required autocomplete="name"></div>
+  <div><label for="f-email">Email</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
+  <div><label for="f-phone">WhatsApp (optional)</label><input id="f-phone" name="WhatsApp" type="tel" autocomplete="tel"></div>
+  <div><label for="f-pax">Travellers</label><select id="f-pax" name="Travellers"><option>1</option><option selected>2</option><option>3 to 4</option><option>5 to 7</option><option>8 or more</option></select></div>
+  <div><label for="f-from">Starting from</label><select id="f-from" name="Starting from"><option>Marrakech</option><option>Fes</option><option>Casablanca</option><option>Tangier</option></select></div>
+  <div><label for="f-days">Days</label><select id="f-days" name="Days"><option>3</option><option>4</option><option>5</option><option>6 to 7</option><option>8 to 10</option><option>11 or more</option></select></div>
+  <div class="full"><label for="f-date">Approximate dates</label><input id="f-date" name="Dates" placeholder="For example, mid-March 2027"></div>
+  <div class="full"><label for="f-msg">Tour or ideas</label><textarea id="f-msg" name="Tour or ideas" placeholder="A tour from this site, or what you would like to see"></textarea></div>
+  <div class="full"><button class="btn dark" type="submit" id="f-btn">Send my request</button><p class="note" id="formNote"></p></div>
 </form>
+<script>
+(function(){var f=document.getElementById('tripform');if(!f)return;var b=document.getElementById('f-btn'),n=document.getElementById('formNote');
+f.addEventListener('submit',function(e){e.preventDefault();b.disabled=true;b.textContent='Sending...';n.textContent='';
+fetch('https://formsubmit.co/ajax/royalmoroccotravel3@gmail.com',{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)})
+.then(function(r){return r.json()}).then(function(d){if(d.success==='false'||d.success===false)throw 0;
+f.reset();b.textContent='Request sent';n.innerHTML='Thank you! We received your request and will reply with a route and a price within 24 hours, usually much sooner.';
+try{gtag('event','generate_lead',{method:'trip_request'})}catch(x){}})
+.catch(function(){b.disabled=false;b.textContent='Send my request';n.innerHTML='Sorry, the request could not be sent. Please <a href="https://wa.me/212714987226" target="_blank" rel="noopener">write to us on WhatsApp</a>.'});});})();
+</script>
 <div class="direct"><div><small>WhatsApp, day and night</small><span class="v2">+212 714 987 226</span></div><div><small>Email</small><span class="v2">royalmoroccotravel3@gmail.com</span></div><div><small>Instagram</small><span class="v2">@royalmorocco_travel</span></div></div>
 </div></div>
 </div></section></div>
