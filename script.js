@@ -13,6 +13,7 @@ const I18N={
 };
 let LANG='en';
 try{const sv=localStorage.getItem('rmt-lang');if(I18N[sv])LANG=sv}catch(e){}
+try{const q=new URLSearchParams(location.search).get('lang');if(I18N[q]){LANG=q;localStorage.setItem('rmt-lang',q)}}catch(e){}
 function setLang(l){
   if(!I18N[l])return;LANG=l;
   document.documentElement.lang=l;
