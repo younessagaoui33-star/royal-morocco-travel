@@ -262,3 +262,13 @@ var m=document.getElementById('f-msg');m.value='I am interested in: '+t;var fr=t
 if(type==='custom-tours'){var f=document.getElementById('f-from');if(f)f.value=city;var r=document.getElementById('request');if(r)r.scrollIntoView();return}
 var g=document.querySelector('[data-view="'+type+'"] .cg[data-city="'+city+'"]');if(!g)return;
 g.querySelectorAll('.trow').forEach(function(r){var n=+r.dataset.d;if(n>=lo&&n<=hi)r.classList.add('hit')});setTimeout(function(){g.scrollIntoView({block:'center'})},80)})();
+
+/* GA4: track contact clicks (WhatsApp, phone, email) */
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href]');if(!a||typeof gtag!=='function')return;
+  const h=a.getAttribute('href')||'';let ev=null;
+  if(/wa\.me|whatsapp\.com/i.test(h))ev='whatsapp_click';
+  else if(/^tel:/i.test(h))ev='phone_click';
+  else if(/^mailto:/i.test(h))ev='email_click';
+  if(ev)gtag('event',ev,{link_url:h.split('?')[0],link_text:(a.textContent||'').trim().slice(0,60),page_path:location.pathname});
+},true);
